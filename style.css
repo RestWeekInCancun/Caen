@@ -1,0 +1,76 @@
+body {
+  --hsl: 200, 55%, 90%;
+  box-sizing: border-box;
+  max-width: 750px;
+  font-size: 1.2em;
+  font-family: sans-serif;
+  margin: 0 auto;
+  padding: 15px;
+  width: 95%;
+  color: darkblue;
+}
+
+#searchWords {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 5px;
+  background: hsl(var(--hsl));
+  border-radius: 5px;
+}
+
+#searchWords * {
+  margin: 0 0.5em;
+}
+
+#searchWords label {
+  display: flex;
+  align-items: center;
+  flex-basis: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  padding: 5px;
+}
+
+#searchWords label::after {
+  content: "";
+  display: block;
+  flex: 1;
+  border-top: 2px solid currentColor;
+  margin-left: 15px;
+}
+
+#searchWords input,
+button {
+  color: inherit;
+  font-size: inherit;
+  min-width: 48px;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 5px 15px;
+}
+
+#searchWords input {
+  flex: 1;
+}
+
+#results {
+  display: block;
+  border-radius: 3px;
+  margin: 1em 0;
+  background: hsla(var(--hsl));
+  padding: 10px;
+}
+
+.word {
+  text-align: center;
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid hsl(var(--hsl));
+  background: white;
+  letter-spacing: 0.5px;
+}
