@@ -1,13 +1,12 @@
 body {
   --hsl: 200, 55%, 90%;
   box-sizing: border-box;
-  max-width: 750px;
+  max-width: 900px;
   font-size: 1.2em;
   font-family: sans-serif;
   margin: 0 auto;
   padding: 15px;
-  width: 95%;
-  color: darkblue;
+  color: #17397b;
 }
 
 #searchWords {
@@ -20,17 +19,22 @@ body {
   margin: 0 0.5em;
 }
 
-#searchWords fieldset {
+fieldset {
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid currentColor;
 }
 
-#searchWords legend {
+fieldset + fieldset {
+  margin-top: 0.5em;
+}
+
+legend {
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
   letter-spacing: 0.5px;
-  padding: 5px;
+  padding: 0 5px;
 }
 
 

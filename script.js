@@ -1,39 +1,63 @@
-let words = fetch("./words.txt").then(resp => resp.text()).then(data => start(data));
+async function getWordsList() {
+  let wordsList = {};
 
-function start(words) {
-  function findWords(letters) {
-    const regex = new RegExp(`\\b[${letters}]{2,${letters.length}}\\b`, "g");
-    const results = [...words.matchAll(regex)].reduce((acc, word) => {
-      let [wordTest] = word;
-      for (const letter of letters) {
-        wordTest = wordTest.replace(letter, "");
-      }
-      if (wordTest === "") {
-        acc.push(word[0]);
-      }
-      return acc;
-    }, []);
-
-    return results;
+  for (let i = 2; ; i++) {
+    try {
+      const path = `./words/${i}-letters.txt`;
+      const data = await fetch(path);
+      if (!data.ok) {throw "File doesn't exist!";}
+      const words = await data.text();
+      wordsList[i] = words;
+    } catch {
+      break;
+    }
   }
 
-  document.getElementById("searchWords").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const input = document.getElementById("letters").value.toUpperCase().trim();
-    if (input) {
-      const outputEl = document.getElementById("results");
-      while (outputEl.firstChild) {
-        outputEl.removeChild(outputEl.firstChild);
-      }
-      const result = findWords(input);
-      const newHtml =
-        result.length > 0
-          ? result.map((word) => `<span class="word">${word}</span>`).join("")
-          : `No words found matching '${input}'`;
-
-      outputEl.innerHTML = newHtml;
-    }
-  });
-
-  return words;
+  return wordsList;
 }
+
+function findWords(words, letters) {
+  const regex = new RegExp(`\\b[${letters}]{2,${letters.length}}\\b`, "g");
+  const results = [...words.matchAll(regex)].reduce((acc, word) => {
+    let [wordTest] = word;
+    for (const letter of letters) {
+      wordTest = wordTest.replace(letter, "");
+    }
+    if (wordTest === "") {
+      acc.push(word[0]);
+    }
+    return acc;
+  }, []);
+
+  return results;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  document.getElementById("searchWords").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // get input
+    const input = document.getElementById("letters").value.toUpperCase().trim();
+
+    // empty output
+    const outputEl = document.getElementById("results");
+
+    const wordsList = await getWordsList();
+
+    let newHtml = "";
+
+    for (const key in wordsList) {
+      const words = findWords(wordsList[key], input);
+      if (words.length > 0) {
+        newHtml += `<fieldset><legend>${key} letters</legend>${words.map(word => `<span class="word">${word}</span>`).join('')}</fieldset>`;
+      }
+    }
+
+    if (newHtml === "") {
+      newHtml = `No words found matching '${input}'`;
+    }
+
+    outputEl.innerHTML = newHtml;
+  });
+});
