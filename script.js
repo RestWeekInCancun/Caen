@@ -17,14 +17,14 @@ async function getWordsList() {
 }
 
 function findWords(words, letters) {
-  const regex = new RegExp(`\\b[${letters}]{2,${letters.length}}\\b`, "g");
+  const regex = new RegExp(`\\b([${letters}]{2,${letters.length}}\\*?)[^a-zA-Z]`, "g");
   const results = [...words.matchAll(regex)].reduce((acc, word) => {
-    let [wordTest] = word;
+    let wordTest = word[1];
     for (const letter of letters) {
       wordTest = wordTest.replace(letter, "");
     }
-    if (wordTest === "") {
-      acc.push(word[0]);
+    if (wordTest === "" || wordTest === "*") {
+      acc.push(word[1]);
     }
     return acc;
   }, []);
@@ -51,7 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const wordSet = wordsList[i];
       const words = findWords(wordSet.words, input);
       if (words.length > 0) {
-        newHtml += `<fieldset><legend>${wordSet.length} letters</legend>${words.map(word => `<span class="word">${word}</span>`).join('')}</fieldset>`;
+        newHtml += `<fieldset><legend>${wordSet.length} letters</legend>${words.map(word => {
+          let css = "word ";
+
+          if (word.indexOf("*") > -1) {
+            css += "danger";
+            word = word.substring(0, word.indexOf("*"));
+          }
+
+          return `<span class="${css}">${word}</span>`;
+        }).join('')}</fieldset>`;
       }
     }
 
