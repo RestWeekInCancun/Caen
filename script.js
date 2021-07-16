@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const wordSet = wordsList[i];
       const words = findWords(wordSet.words, input);
       if (words.length > 0) {
-        newHtml += `<fieldset><legend>${wordSet.length} letters</legend>${words.map(word => {
+        newHtml += `<section class="fieldset"><h1 class="legend">${wordSet.length} letters</h1><ul class="words">${words.map(word => {
           let css = "word ";
 
           if (word.indexOf("*") > -1) {
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             word = word.substring(0, word.indexOf("*"));
           }
 
-          return `<span class="${css}">${word}</span>`;
-        }).join('')}</fieldset>`;
+          return `<li class="${css}">${word}</li>`;
+        }).join('')}</ul></section>`;
       }
     }
 

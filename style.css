@@ -3,41 +3,55 @@ body {
   --hslText: 220, 68%, 29%;
   box-sizing: border-box;
   max-width: 900px;
+  width: 95%;
   font-size: 1.2em;
   font-family: sans-serif;
   margin: 0 auto;
-  padding: 15px;
   color: hsl(var(--hslText));
 }
 
 #searchWords {
-  padding: 10px 5px;
+  padding: 10px 12px;
   background: hsl(var(--hslBg));
   border-radius: 5px;
+  margin: 1em 0;
 }
 
-#searchWords * {
-  margin: 0 0.5em;
-}
-
-fieldset {
+.fieldset, fieldset {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid currentColor;
 }
 
-fieldset + fieldset {
-  margin-top: 0.5em;
-}
-
-legend {
+.legend, legend {
   font-weight: bold;
+  font-size: 1em;
   text-transform: uppercase;
   line-height: 1.5;
   letter-spacing: 0.5px;
   padding: 0 5px;
 }
 
+/* fieldset / legend styling without using those els */
+
+.fieldset {
+  position: relative;
+  padding: 0.9em 0.5em 0.5em 0.5em;
+  margin: 0.75em 0.25em 0.25em 0.25em;
+}
+
+.fieldset + .fieldset {
+  margin-top: 1.5em;
+}
+
+
+.legend {
+  position: absolute;
+  top: 0;
+  margin: 0 0.5em;
+  transform: translateY(-50%);
+  background: hsl(var(--hslBg));
+}
 
 #searchWords input,
 button {
@@ -47,6 +61,7 @@ button {
   min-height: 48px;
   box-sizing: border-box;
   padding: 5px 15px;
+  margin-left: 5px;
 }
 
 #searchWords input {
@@ -56,17 +71,21 @@ button {
 
 #results {
   display: block;
-  border-radius: 3px;
+  border-radius: 5px;
   margin: 1em 0;
   background: hsla(var(--hslBg));
   padding: 10px;
+}
+
+.words {
+  display: contents;
 }
 
 .word {
   text-align: center;
   display: inline-block;
   margin: 5px;
-  padding: 0.5em 0.75em;
+  padding: 0.6em 0.75em;
   border: 2px solid hsl(var(--hslBg));
   border-radius: 5px;
   background: white;
@@ -81,4 +100,9 @@ button {
 
 .word:hover {
   border-color: hsla(var(--hslText), 0.5);
+}
+
+.warning {
+  font-size: 90%;
+  margin: 10px;
 }
