@@ -17,7 +17,7 @@ async function getWordsList() {
 }
 
 function findWords(words, letters) {
-  const regex = new RegExp(`\\b([${letters}]{2,${letters.length}}\\*?)(?=$|,| )`, "g");
+  const regex = new RegExp(`\\b([${letters}]{2,${letters.length}}\\*?)(?=$|\W|\s)`, "g");
   const results = [...words.matchAll(regex)].reduce((acc, word) => {
     let wordTest = word[1];
     for (const letter of letters) {
