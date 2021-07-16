@@ -1,5 +1,5 @@
 async function getWordsList() {
-  let wordsList = {};
+  let wordsList = [];
 
   for (let i = 2; ; i++) {
     try {
@@ -7,13 +7,13 @@ async function getWordsList() {
       const data = await fetch(path);
       if (!data.ok) {throw "File doesn't exist!";}
       const words = await data.text();
-      wordsList[i] = words;
+      wordsList.push({length: i, words});
     } catch {
       break;
     }
   }
 
-  return wordsList;
+  return wordsList.reverse();
 }
 
 function findWords(words, letters) {
@@ -47,10 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let newHtml = "";
 
-    for (const key in wordsList) {
-      const words = findWords(wordsList[key], input);
+    for (let i = 0; i < wordsList.length; i++) {
+      const wordSet = wordsList[i];
+      const words = findWords(wordSet.words, input);
       if (words.length > 0) {
-        newHtml += `<fieldset><legend>${key} letters</legend>${words.map(word => `<span class="word">${word}</span>`).join('')}</fieldset>`;
+        newHtml += `<fieldset><legend>${wordSet.length} letters</legend>${words.map(word => `<span class="word">${word}</span>`).join('')}</fieldset>`;
       }
     }
 
