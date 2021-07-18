@@ -7,11 +7,14 @@ body {
   font-size: 1.2em;
   font-family: sans-serif;
   margin: 0 auto;
+  color: #18397c;
   color: hsl(var(--hslText));
+  background: white;
 }
 
 #searchWords {
   padding: 10px 12px;
+  background: #D7EAF4;
   background: hsl(var(--hslBg));
   border-radius: 5px;
   margin: 1em 0;
@@ -50,6 +53,7 @@ body {
   top: 0;
   margin: 0 0.5em;
   transform: translateY(-50%);
+  background: #D7EAF4;
   background: hsl(var(--hslBg));
 }
 
@@ -73,7 +77,8 @@ button {
   display: block;
   border-radius: 5px;
   margin: 1em 0;
-  background: hsla(var(--hslBg));
+  background: #D7EAF4;
+  background: hsl(var(--hslBg));
   padding: 10px;
 }
 
@@ -86,6 +91,7 @@ button {
   display: inline-block;
   margin: 5px;
   padding: 0.6em 0.75em;
+  border: 2px solid #D7EAF4;
   border: 2px solid hsl(var(--hslBg));
   border-radius: 5px;
   background: white;
@@ -94,11 +100,13 @@ button {
 
 .danger {
   --hslText: 0, 100%, 41%;
+  color: #d10000;
   color: hsl(var(--hslText));
   background-color: #fee;
 }
 
 .word:hover {
+  border-color: white;
   border-color: hsla(var(--hslText), 0.5);
 }
 
