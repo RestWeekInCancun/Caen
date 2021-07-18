@@ -3,7 +3,7 @@ async function getWordsList() {
 
   for (let i = 2; ; i++) {
     try {
-      const path = `./words/${i}-letters.txt?v=1`;
+      const path = `./words/${i}-letters.txt`;
       const data = await fetch(path);
       if (!data.ok) {throw "File doesn't exist!";}
       const words = await data.text();
