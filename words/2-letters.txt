@@ -1,4 +1,4 @@
-AM, AN, AS, AT*,
+.AM, AN, AS, AT,
 
 BE, BY,
 
