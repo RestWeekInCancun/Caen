@@ -32,7 +32,8 @@ function findWords(words, letters) {
   return results;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const wordsList = await getWordsList();
 
   document.getElementById("searchWords").addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -42,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // empty output
     const outputEl = document.getElementById("results");
-
-    const wordsList = await getWordsList();
 
     let newHtml = "";
 
