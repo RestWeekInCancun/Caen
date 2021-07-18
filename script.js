@@ -3,7 +3,7 @@ async function getWordsList() {
 
   for (let i = 2; ; i++) {
     try {
-      const path = `./words/${i}-letters.txt`;
+      const path = `./words/${i}-letters.txt?v=1`;
       const data = await fetch(path);
       if (!data.ok) {throw "File doesn't exist!";}
       const words = await data.text();
@@ -33,6 +33,7 @@ function findWords(words, letters) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+
   const wordsList = await getWordsList();
 
   document.getElementById("searchWords").addEventListener("submit", async function (e) {
