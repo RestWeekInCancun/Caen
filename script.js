@@ -33,7 +33,7 @@ function findWords(words, letters) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const pass = (await (await fetch("./code.txt")).text()).trim();
+  const pass = (await (await fetch(`./c.txt?v=${Date.now()}`)).text()).trim();
   const passwordEl = document.getElementById("password");
   const errorEl = document.getElementById("errorMessage");
   let wordsList;
@@ -44,8 +44,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // get input
     const input = passwordEl.value.trim();
-
-    console.log(input, pass);
 
     if (input === pass) {
       document.getElementById("entry").classList.add("hidden");
