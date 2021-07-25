@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pass = (await (await fetch("./code.txt")).text()).trim();
   const passwordEl = document.getElementById("password");
   const errorEl = document.getElementById("errorMessage");
+  let wordsList;
 
   // login ?
   document.getElementById("entry").addEventListener("submit", async function(e) {
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (input === pass) {
       document.getElementById("entry").classList.add("hidden");
       document.getElementById("app").classList.remove("hidden");
+      wordsList = await getWordsList();
     } else {
       passwordEl.classList.add("invalid")
       errorEl.textContent = "Invalid password."
@@ -63,8 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     errorEl.textContent = ""
 
   })
-
-  const wordsList = await getWordsList();
 
   document.getElementById("searchWords").addEventListener("submit", async function (e) {
     e.preventDefault();
