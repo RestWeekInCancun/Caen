@@ -33,6 +33,36 @@ function findWords(words, letters) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const pass = (await (await fetch("./code.txt")).text()).trim();
+  const passwordEl = document.getElementById("password");
+  const errorEl = document.getElementById("errorMessage");
+
+  // login ?
+  document.getElementById("entry").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    // get input
+    const input = passwordEl.value.trim();
+
+    console.log(input, pass);
+
+    if (input === pass) {
+      document.getElementById("entry").classList.add("hidden");
+      document.getElementById("app").classList.remove("hidden");
+    } else {
+      passwordEl.classList.add("invalid")
+      errorEl.textContent = "Invalid password."
+    }
+
+    return false
+  })
+
+  passwordEl.addEventListener("input", function(e) {
+    passwordEl.setCustomValidity("");
+    passwordEl.classList.remove("invalid")
+    errorEl.textContent = ""
+
+  })
 
   const wordsList = await getWordsList();
 

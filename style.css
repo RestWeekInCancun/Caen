@@ -12,21 +12,69 @@ body {
   background: white;
 }
 
+.hidden {
+  display: none !important;
+}
+
 #searchWords {
   padding: 10px 12px;
   background: #D7EAF4;
   background: hsl(var(--hslBg));
   border-radius: 5px;
-  margin: 1em 0;
+  margin: 1em auto;
 }
 
-.fieldset, fieldset {
+#entry {
+  padding: 20px;
+  background: #D7EAF4;
+  background: hsl(var(--hslBg));
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 500px;
+  position: relative;
+  margin: 2em auto;
+}
+
+#entry label {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+#errorMessage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4em;
+  padding: inherit;
+  box-sizing: border-box;
+}
+
+#errorMessage:empty {
+  display: none;
+}
+
+#password {
+  min-width: 150px;
+}
+
+#password.invalid, #errorMessage {
+  color: #d10000;
+  background-color: #fee;
+  border-color: currentColor;
+}
+
+.fieldset,
+fieldset {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid currentColor;
 }
 
-.legend, legend {
+.legend,
+legend {
   font-weight: bold;
   font-size: 1em;
   text-transform: uppercase;
@@ -43,7 +91,7 @@ body {
   margin: 0.75em 0.25em 0.25em 0.25em;
 }
 
-.fieldset + .fieldset {
+.fieldset+.fieldset {
   margin-top: 1.5em;
 }
 
@@ -57,7 +105,7 @@ body {
   background: hsl(var(--hslBg));
 }
 
-#searchWords input,
+input,
 button {
   color: inherit;
   font-size: inherit;
@@ -65,13 +113,22 @@ button {
   min-height: 48px;
   box-sizing: border-box;
   padding: 5px 15px;
+}
+
+input,
+button,
+label {
   margin-left: 5px;
 }
 
-#searchWords input {
+input {
   flex: 1;
+}
+
+#searchWords input {
   text-transform: uppercase;
 }
+
 
 #results {
   display: block;

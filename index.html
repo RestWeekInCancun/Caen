@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Word Collect Solver</title>
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Collect Solver</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <form id="entry">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required autofocus>
+    <button>Enter</button>
+    <div id="errorMessage"></div>
+  </form>
+
+  <div id="app" class="hidden">
     <form id="searchWords">
       <fieldset>
         <legend>Search</legend>
-        <input
-          type="text"
-          name="letters"
-          pattern="[a-zA-Z]+"
-          id="letters"
-          required
-          autofocus
-        />
+        <input type="text" name="letters" pattern="[a-zA-Z]+" id="letters" required autofocus />
         <button>Submit</button>
       </fieldset>
     </form>
@@ -30,5 +33,7 @@
       </div>
     </output>
     <p class="warning danger">Note: Red words are risky and have a chance of not being accepted.</p>
-  </body>
+  </div>
+</body>
+
 </html>
